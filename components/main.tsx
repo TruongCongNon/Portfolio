@@ -5,6 +5,7 @@ import gsap from "gsap"
 
 import { Button } from "@/components/ui/button"
 import { Download, HatGlassesIcon } from "lucide-react"
+import Link from "next/link"
 
 export default function MainPage() {
     const mainRef = useRef<HTMLElement>(null)
@@ -111,7 +112,7 @@ export default function MainPage() {
     }, [])
 
     return (
-        <main
+        <main id="home"
             ref={mainRef}
             className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden px-4 md:px-6"
         >
@@ -166,9 +167,8 @@ export default function MainPage() {
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
                     <Button
                         asChild
-                        size="lg"
                         variant="ghost"
-                        className="hero-action invisible rounded-full bg-foreground px-6 text-background opacity-0 hover:bg-foreground/90 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
+                        className="hero-action invisible h-11 rounded-full bg-foreground px-5 text-base text-background opacity-0 hover:bg-foreground/90 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
                     >
                         <a href="/cv.pdf" download>
                             <Download className="mr-2 h-4 w-4" />
@@ -178,20 +178,20 @@ export default function MainPage() {
 
                     <Button
                         asChild
-                        size="lg"
                         variant="outline"
-                        className="hero-action invisible rounded-full border-border bg-background px-6 text-foreground opacity-0 hover:bg-accent hover:text-accent-foreground"
+                        className="hero-action invisible h-11 rounded-full border-border bg-background px-5 text-base text-foreground opacity-0 hover:bg-accent hover:text-accent-foreground"
                     >
-                        <a
-                            href="https://github.com/your-github"
+                        <Link
+                            href="https://github.com/TruongCongNon"
                             target="_blank"
                             rel="noreferrer"
                         >
                             <HatGlassesIcon className="mr-2 h-4 w-4" />
                             GitHub
-                        </a>
+                        </Link>
                     </Button>
                 </div>
+
             </section>
         </main>
     )

@@ -147,7 +147,7 @@ const ProjectPage = () => {
     }, [])
 
     return (
-        <section
+        <section id="project"
             ref={sectionRef}
             className="relative left-1/2 min-h-screen w-screen -translate-x-1/2 overflow-hidden bg-background px-4 py-20 text-foreground sm:px-6 md:px-10"
         >
@@ -241,7 +241,7 @@ const ProjectPage = () => {
                                     className="h-10 flex-1 gap-2 rounded-lg bg-primary text-primary-foreground shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
                                 >
                                     <Eye className="size-4" />
-                                    Xem chi tiết
+                                    View detail
                                 </Button>
 
                                 <Button
@@ -250,8 +250,14 @@ const ProjectPage = () => {
                                     className="h-10 flex-1 gap-2 rounded-lg border-primary/40 bg-background/60 transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary/10"
                                 >
                                     <a href={project.codeUrl ?? "#"} target="_blank">
-                                        <Code2Icon className="size-4" />
-                                        Code
+                                        {project.demo ? (
+                                            "Demo"
+                                        ) : (
+                                            <>
+                                                <Code2Icon className="size-4" />
+                                                Code
+                                            </>
+                                        )}
                                     </a>
                                 </Button>
                             </CardContent>

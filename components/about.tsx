@@ -84,7 +84,7 @@ const AboutPage = () => {
     }, [])
 
     return (
-        <section
+        <section id="about"
             ref={sectionRef}
             className="relative left-1/2 min-h-screen w-screen -translate-x-1/2 overflow-hidden bg-background"
         >
@@ -94,21 +94,31 @@ const AboutPage = () => {
                     className="flex w-full flex-col will-change-transform md:h-screen md:w-max md:flex-row"
                 >
                     <div className="grid min-h-screen w-screen grid-cols-1 items-center gap-8 px-4 py-16 sm:px-6 md:h-screen md:min-w-screen md:grid-cols-2 md:gap-10 md:px-12 md:py-0 lg:px-16 xl:px-24">
-                        <div className="about-text relative flex aspect-square w-full max-w-82.5 items-center justify-center justify-self-center rounded-2xl border bg-zinc-950 text-white shadow-xl sm:max-w-95 md:max-w-105 lg:max-w-115">
+                        <div className="about-text relative flex min-h-80 w-full max-w-145 items-center justify-center justify-self-center rounded-2xl border bg-zinc-950 text-white shadow-xl sm:min-h-[360px] md:max-w-[620px] lg:max-w-[680px]">
                             <div className="absolute left-5 top-5 flex gap-2">
                                 <span className="size-3 rounded-full bg-red-400" />
                                 <span className="size-3 rounded-full bg-yellow-400" />
                                 <span className="size-3 rounded-full bg-emerald-400" />
                             </div>
 
-                            <div className="w-[88%] overflow-hidden rounded-lg border border-white/10 bg-white/5 p-3 font-mono text-[10px] leading-6 sm:p-4 sm:text-sm md:text-[13px] lg:text-sm">
+                            <div className="w-[90%] overflow-hidden rounded-lg border border-white/10 bg-white/5 p-4 font-mono text-[10px] leading-6 sm:text-sm md:text-[13px] lg:text-sm [&_p]:whitespace-nowrap">
                                 <p className="text-emerald-300">const dataUser = [</p>
                                 <p className="pl-4 text-white/80">{"{"}</p>
-                                <p className="pl-8 text-blue-400">username: "Truong Cong Non",</p>
-                                <p className="pl-8 text-white/80">role: "Front-End Developer",</p>
-                                <p className="pl-8 text-white/80">stack: "ReactJS / Next.js / TypeScript",</p>
-                                <p className="pl-8 text-white/80">goal: "Front-End Internship",</p>
-                                <p className="pl-8 text-white/80">mindset: "Learning by building"</p>
+                                <p className="pl-8 text-blue-400">
+                                    username: "Truong Cong Non",
+                                </p>
+                                <p className="pl-8 text-white/80">
+                                    role: "Front-End Developer",
+                                </p>
+                                <p className="pl-8 text-white/80">
+                                    stack: "ReactJS / Next.js / TypeScript",
+                                </p>
+                                <p className="pl-8 text-white/80">
+                                    goal: "Front-End Internship",
+                                </p>
+                                <p className="pl-8 text-white/80">
+                                    mindset: "Learning by building"
+                                </p>
                                 <p className="pl-4 text-white/80">{"}"}</p>
                                 <p className="text-emerald-300">]</p>
                             </div>
@@ -149,7 +159,8 @@ const AboutPage = () => {
                                     </h3>
 
                                     <p className="text-sm text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:text-emerald-500 sm:text-base">
-                                        University of Science and Education - The University of Da Nang
+                                        University of Science and Education - The University of Da
+                                        Nang
                                     </p>
 
                                     <Badge variant="secondary">2021 - 2025</Badge>

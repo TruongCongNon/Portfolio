@@ -1,207 +1,129 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Slider } from "@/components/ui/slider"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-import { skills } from "@/lib/data"
+import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useEffect, useMemo, useRef, useState } from "react"
+
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
+import { skills } from "@/lib/data"
+
 gsap.registerPlugin(ScrollTrigger)
-
-
 
 const SkillsPage = () => {
     const sectionRef = useRef<HTMLDivElement | null>(null)
-    const [values, setValues] = useState(() => skills.map(() => 0))
-    const [averageValue, setAverageValue] = useState(0)
 
-    const stats = useMemo(() => {
-        const average = Math.round(
-            skills.reduce((total, skill) => total + skill.percent, 0) / skills.length
-        )
+    const groupedSkills = skills.reduce<Record<string, typeof skills>>(
+        (groups, skill) => {
+            if (!groups[skill.type]) {
+                groups[skill.type] = []
+            }
 
-        const strongest = skills.reduce((best, skill) =>
-            skill.percent > best.percent ? skill : best
-        )
-
-        return {
-            average,
-            strongest,
-            total: skills.length,
-        }
-    }, [])
+            groups[skill.type].push(skill)
+            return groups
+        },
+        {}
+    )
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.to(".skills-heading", {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 75%",
-                },
-            })
-
             gsap.fromTo(
-                ".skill-card",
-                { y: 30, opacity: 0 },
+                ".skills-heading",
+                { y: 32, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.65,
-                    stagger: 0.08,
+                    duration: 0.8,
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: sectionRef.current,
-                        start: "top 70%",
+                        start: "top 75%",
                     },
                 }
             )
 
             gsap.fromTo(
-                ".skill-row",
-                { x: -20, opacity: 0 },
+                ".skill-group",
+                { y: 36, opacity: 0 },
                 {
-                    x: 0,
+                    y: 0,
                     opacity: 1,
-                    duration: 0.5,
-                    stagger: 0.04,
-                    ease: "power2.out",
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: "power3.out",
                     scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top 65%",
+                        trigger: ".skills-grid",
+                        start: "top 80%",
                     },
                 }
             )
 
-            const progress = { value: 0 }
-
-            gsap.to(progress, {
-                value: 1,
-                duration: 1.8,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 65%",
-                    once: true,
-                },
-                onUpdate: () => {
-                    setValues(
-                        skills.map((skill) => Math.round(skill.percent * progress.value))
-                    )
-
-                    setAverageValue(Math.round(stats.average * progress.value))
-                },
-            })
+            gsap.fromTo(
+                ".skill-box",
+                { y: 28, opacity: 0, scale: 0.96 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    stagger: 0.04,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".skills-grid",
+                        start: "top 80%",
+                    },
+                }
+            )
         }, sectionRef)
 
         return () => ctx.revert()
-    }, [stats.average])
+    }, [])
 
     return (
-        <section ref={sectionRef} className="min-h-screen px-4 py-20 md:px-10">
-            <div className="mx-auto max-w-6xl space-y-8">
-                <div className="skills-heading translate-y-8 space-y-3 opacity-0">
+        <section
+            id="skills"
+            ref={sectionRef}
+            className="relative min-h-screen px-4 py-20 md:px-10"
+        >
+            <div className="mx-auto max-w-6xl space-y-10">
+                <div className="skills-heading max-w-2xl space-y-3 opacity-0">
                     <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
                         Technical Skills
                     </h1>
+
+                    <p className="text-base leading-7 text-muted-foreground">
+                        Technologies and tools I use to build responsive, modern, and
+                        user-friendly web applications.
+                    </p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-3">
-                    <Card className="skill-card">
-                        <CardHeader>
-                            <CardTitle className="text-sm text-muted-foreground">
-                                Average
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-3xl font-bold tabular-nums">
-                            {averageValue}%
-                        </CardContent>
-                    </Card>
+                <div className="skills-grid grid gap-6 lg:grid-cols-2">
+                    {Object.entries(groupedSkills).map(([type, items]) => (
+                        <div
+                            key={type}
+                            className="skill-group space-y-4 rounded-xl  border-border/70 bg-card/40 p-5 opacity-0 shadow-sm backdrop-blur-md"
+                        >
+                            <div className="flex items-center gap-3">
+                                <h2 className="text-xl font-semibold">{type}</h2>
+                            </div>
 
-                    <Card className="skill-card">
-                        <CardHeader>
-                            <CardTitle className="text-sm text-muted-foreground">
-                                Strongest Skill
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-3xl font-bold">
-                            {stats.strongest.name}
-                        </CardContent>
-                    </Card>
-
-                    <Card className="skill-card">
-                        <CardHeader>
-                            <CardTitle className=" text-sm text-muted-foreground">
-                                Total Skills
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-3xl font-bold">
-                            {stats.total}
-                        </CardContent>
-                    </Card>
-                </div>
-
-                <Card className="skill-card">
-                    <CardHeader>
-                        <CardTitle>Skill Overview</CardTitle>
-                    </CardHeader>
-
-                    <CardContent>
-                        <div className="max-h-130 overflow-auto rounded-md border">
-                            <Table>
-                                <TableHeader className="sticky top-0 z-10 bg-background">
-                                    <TableRow>
-                                        <TableHead className="w-55">Skill</TableHead>
-                                        <TableHead className="w-40">Type</TableHead>
-                                        <TableHead>Progress</TableHead>
-                                        <TableHead className="w-22.5 text-right">
-                                            Level
-                                        </TableHead>
-                                    </TableRow>
-                                </TableHeader>
-
-                                <TableBody>
-                                    {skills.map((skill, index) => (
-                                        <TableRow key={skill.name} className="skill-row opacity-0">
-                                            <TableCell className="font-medium">
+                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                {items.map((skill) => (
+                                    <Card
+                                        key={skill.name}
+                                        className="skill-box group border-border/70 bg-background/70 opacity-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:bg-primary/5 hover:shadow-lg"
+                                    >
+                                        <CardContent className="flex min-h-20 items-center justify-center p-4 text-center">
+                                            <h3 className="text-base font-semibold leading-tight transition group-hover:text-primary">
                                                 {skill.name}
-                                            </TableCell>
-
-                                            <TableCell>
-                                                <Badge variant="outline">{skill.type}</Badge>
-                                            </TableCell>
-
-                                            <TableCell>
-                                                <Slider
-                                                    value={[values[index]]}
-                                                    max={100}
-                                                    step={1}
-                                                    className="pointer-events-none"
-                                                />
-                                            </TableCell>
-
-                                            <TableCell className="text-right font-semibold tabular-nums">
-                                                {values[index]}%
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                                            </h3>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
                         </div>
-                    </CardContent>
-                </Card>
+                    ))}
+                </div>
             </div>
         </section>
     )

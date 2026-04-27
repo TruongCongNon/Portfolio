@@ -1,14 +1,13 @@
-import { StaticImageData } from "next/image";
 import image from "@/public/images/image.png";
 import image1 from "@/public/images/image1.png";
 import image2 from "@/public/images/image2.png";
+import { StaticImageData } from "next/image";
 interface navItem {
   label: string;
   href: string;
 }
 interface skillItems {
   name: string;
-  percent: number;
   type: string;
 }
 export interface Project {
@@ -21,28 +20,28 @@ export interface Project {
   codeUrl?: string;
   time: string;
   status: boolean;
+  demo: boolean;
 }
 export const navItems: navItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Skills", href: "/skills" },
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Skills", href: "/#skill" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#project" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const skills: skillItems[] = [
-  { name: "ReactJS", percent: 80, type: "Library" },
-  { name: "TailwindCSS", percent: 70, type: "Frontend" },
-  { name: "JavaScript", percent: 70, type: "Language" },
-  { name: "Next.js", percent: 60, type: "Framework" },
-  { name: "TypeScript", percent: 50, type: "Language" },
-  { name: "Node.js", percent: 60, type: "Backend" },
-  { name: "ShadCN UI", percent: 65, type: "Design" },
-  { name: "Postman", percent: 70, type: "Testing API" },
-  { name: "ExpressJS", percent: 50, type: "Backend" },
-  { name: "Git", percent: 70, type: "Source Controls" },
-  { name: "MySQL", percent: 50, type: "Database" },
-  { name: "MongoDB", percent: 50, type: "Database" },
+  { name: "ReactJS", type: "Library" },
+  { name: "TailwindCSS", type: "Framework" },
+  { name: "JavaScript", type: "Language" },
+  { name: "Next.js", type: "Framework" },
+  { name: "TypeScript", type: "Language" },
+  { name: "ShadCN UI", type: "Design" },
+  { name: "Postman", type: "Testing API" },
+  { name: "ExpressJS", type: "Backend" },
+  { name: "Git", type: "Source Controls" },
+  { name: "MySQL", type: "Database" },
+  { name: "MongoDB", type: "Database" },
 ];
 export const projects: Project[] = [
   {
@@ -73,6 +72,7 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/TruongCongNon/RoomManagement",
     time: "5/04/2026 - now",
     status: false,
+    demo: false,
   },
   {
     title: "Trailer Movie App",
@@ -91,6 +91,7 @@ export const projects: Project[] = [
     codeUrl: "https://movie-app-murex-pi-39.vercel.app/",
     time: "9/2024 - 10/2024",
     status: true,
+    demo: true,
   },
   {
     title: "Apple Products Store",
@@ -123,5 +124,6 @@ export const projects: Project[] = [
     codeUrl: "https://github.com/TruongCongNon/KLTN_FE",
     time: "1/2025 - 5/2025",
     status: true,
+    demo: false,
   },
 ];
