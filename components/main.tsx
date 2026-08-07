@@ -12,7 +12,7 @@ export default function MainPage() {
     const nameRef = useRef<HTMLHeadingElement>(null)
 
     const description =
-        "Focused on developing skills in building modern, user-friendly, and intuitive web interfaces."
+        "Focused on developing full-stack development skills by building modern web applications with user-friendly interfaces and efficient backend systems"
 
     const techWords = [
         "ReactJS",

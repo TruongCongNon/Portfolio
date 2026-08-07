@@ -9,10 +9,10 @@ import { Card, CardContent } from "@/components/ui/card"
 gsap.registerPlugin(ScrollTrigger)
 
 const developmentItems = [
-    "Real-world project practice",
-    "Front-End development",
-    "Teamwork abilities",
-    "Full-Stack direction",
+    "Real-world project experience",
+    "Full-Stack development",
+    "Teamwork skills",
+    "Continuous learning"
 ]
 
 const AboutPage = () => {
@@ -108,13 +108,13 @@ const AboutPage = () => {
                                     username: "Truong Cong Non",
                                 </p>
                                 <p className="pl-8 text-white/80">
-                                    role: "Front-End Developer",
+                                    role: "Intern Full-Stack Developer",
                                 </p>
                                 <p className="pl-8 text-white/80">
                                     stack: "ReactJS / Next.js / TypeScript",
                                 </p>
                                 <p className="pl-8 text-white/80">
-                                    goal: "Front-End Internship",
+                                    goal: "Full-Stack Internship",
                                 </p>
                                 <p className="pl-8 text-white/80">
                                     mindset: "Learning by building"
@@ -126,22 +126,15 @@ const AboutPage = () => {
 
                         <div className="max-w-2xl space-y-4 sm:space-y-5">
                             <h1 className="about-text text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-                                Building a strong Front-End foundation.
+                                Building a strong Full-Stack foundation.
                             </h1>
 
                             <p className="about-text text-sm leading-7 text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:text-emerald-500 sm:text-base md:text-lg md:leading-8">
-                                As a graduate in Information Technology from the University of
-                                Education, University of Danang, I am looking for a Front-End
-                                internship opportunity to apply the knowledge I have gained in
-                                real-world projects, enhance my development skills, and gain
-                                valuable experience in a professional work environment.
+                                As a graduate in Information Technology from the University of Education, University of Danang, I am seeking a Full-Stack Developer Internship opportunity to apply my knowledge in real-world projects, improve my front-end and back-end development skills, and gain valuable experience in a professional work environment.
                             </p>
 
-                            <p className="about-text text-sm leading-7 text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:text-emerald-500 sm:text-base md:text-lg md:leading-8">
-                                Within the next year, I aim to become a professional developer
-                                with a strong technical foundation, teamwork abilities, and a
-                                solid grounding in Front-End development, with plans to advance
-                                to Full-Stack development.
+                            <p className="about-text text-sm leading-7 text-muted-foreground transaition-all duration-300 hover:-translate-y-1 hover:text-emerald-500 sm:text-base md:text-lg md:leading-8">
+                                Within the next year, I aim to become a professional Full-Stack Developer with a strong technical foundation, effective teamwork skills, and solid knowledge of both front-end and back-end development.
                             </p>
                         </div>
                     </div>
